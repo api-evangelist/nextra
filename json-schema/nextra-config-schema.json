@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nextra.site/schemas/nextra/nextra-config.json",
+  "title": "Nextra Configuration",
+  "description": "Configuration options for the Nextra Next.js plugin, passed as the argument to the nextra() function in next.config. Controls MDX compilation, search, syntax highlighting, LaTeX, image optimization, and i18n behavior.",
+  "type": "object",
+  "properties": {
+    "defaultShowCopyCode": {
+      "type": "boolean",
+      "description": "Enable the copy button for all code blocks by default, without needing to set copy=true in the code block metadata. Individual blocks can still disable it with copy=false."
+    },
+    "search": {
+      "description": "Option to enable search functionality powered by Pagefind. When enabled, sets the data-pagefind-body attribute on the main element. Can be a boolean or an object controlling code block indexing.",
+      "oneOf": [
+        {
+          "type": "boolean",
+          "description": "Pass true to enable search with defaults, false to disable."
+        },
+        {
+          "type": "object",
+          "description": "Fine-grained search configuration.",
+          "required": ["codeblocks"],
+          "properties": {
+            "codeblocks": {
+              "type": "boolean",
+              "description": "Whether to index code blocks. When false, adds data-pagefind-ignore=\"all\" to all pre elements."
+            }
+          },
+          "additionalProperties": false
+        }
+      ],
+      "default": { "codeblocks": false }
+    },
+    "staticImage": {
+      "type": "boolean",
+      "description": "Automatically optimize static image imports used with standard Markdown image syntax, e.g. ![alt](/image.png). Uses next/image under the hood.",
+      "default": true
+    },
+    "readingTime": {
+      "type": "boolean",
+      "description": "Adds estimated reading time of .md and .mdx files using the reading-time package. The value is injected into the page front matter under the readingTime key."
+    },
+    "latex": {
+      "description": "Enable LaTeX rendering. Supports KaTeX (server-side, fast) and MathJax (browser-side, more complete). Pass true to use KaTeX with defaults.",
+      "oneOf": [
+        {
+          "type": "boolean",
+          "description": "Pass true to enable KaTeX with default options."
+        },
+        {
+          "type": "object",
+          "description": "Use MathJax renderer with optional configuration.",
+          "required": ["renderer"],
+          "properties": {
+            "renderer": {
+              "type": "string",
+              "const": "mathjax",
+              "description": "Use the MathJax renderer."
+            },
+            "options": {
+              "$ref": "#/$defs/MathJaxOptions"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "description": "Use KaTeX renderer with optional configuration.",
+          "required": ["renderer"],
+          "properties": {
+            "renderer": {
+              "type": "string",
+              "const": "katex",
+              "description": "Use the KaTeX renderer."
+            },
+            "options": {
+              "type": "object",
+              "description": "KaTeX options. See https://katex.org/docs/options.html."
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "codeHighlight": {
+      "type": "boolean",
+      "description": "Enable or disable syntax highlighting for code blocks via Rehype Pretty Code.",
+      "default": true
+    },
+    "mdxOptions": {
+      "$ref": "#/$defs/MdxOptions"
+    },
+    "whiteListTagsStyling": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "HTML tag name to allow styling override via mdx-components.js."
+      },
+      "description": "Allows you to whitelist HTML elements to be replaced with components defined in the mdx-components.js file. By default only details and summary are replaced."
+    },
+    "contentDirBasePath": {
+      "type": "string",
+      "pattern": "^/",
+      "description": "Serve .md and .mdx files from the content directory at a custom path instead of the root (/). Must begin with / and must not end with /.",
+      "default": "/"
+    },
+    "unstable_shouldAddLocaleToLinks": {
+      "type": "boolean",
+      "description": "Prefixes locale to all links in the page map information. Useful for i18n setups that do not use Nextra's middleware function.",
+      "default": false
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "MathJaxOptions": {
+      "type": "object",
+      "description": "Configuration options for the MathJax renderer.",
+      "properties": {
+        "src": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL for MathJax CDN. Defaults to https://cdnjs.cloudflare.com."
+        },
+        "config": {
+          "type": "object",
+          "description": "MathJax 3 configuration object. See https://docs.mathjax.org/en/latest/options/index.html."
+        }
+      },
+      "additionalProperties": false
+    },
+    "MdxOptions": {
+      "type": "object",
+      "description": "Options controlling the MDX compilation pipeline.",
+      "properties": {
+        "rehypePlugins": {
+          "type": "array",
+          "description": "List of rehype plugins to apply during MDX compilation.",
+          "items": {}
+        },
+        "remarkPlugins": {
+          "type": "array",
+          "description": "List of remark plugins to apply during MDX compilation.",
+          "items": {}
+        },
+        "recmaPlugins": {
+          "type": "array",
+          "description": "List of recma plugins to apply. This is a new ecosystem for transforming esast (JavaScript AST) trees, currently in beta.",
+          "items": {}
+        },
+        "format": {
+          "type": "string",
+          "enum": ["detect", "mdx", "md"],
+          "description": "Format of the file. 'md' treats as markdown, 'mdx' treats as MDX, 'detect' auto-detects based on file extension.",
+          "default": "detect"
+        },
+        "rehypePrettyCodeOptions": {
+          "type": "object",
+          "description": "Configuration options for Rehype Pretty Code syntax highlighting. See https://github.com/rehype-pretty/rehype-pretty-code."
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

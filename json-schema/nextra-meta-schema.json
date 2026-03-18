@@ -1,0 +1,232 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nextra.site/schemas/nextra/nextra-meta.json",
+  "title": "Nextra Meta File",
+  "description": "Schema for the _meta.js or _meta.global.js file used in Nextra documentation projects. This file controls the display order, titles, visibility, and type of pages and folders in the sidebar navigation. Keys are file or folder names (without extensions), and values are either strings, item configuration objects, separator entries, or menu entries.",
+  "type": "object",
+  "additionalProperties": {
+    "$ref": "#/$defs/MetaEntry"
+  },
+  "$defs": {
+    "MetaEntry": {
+      "description": "A meta entry for a single page or folder. Can be a display title string, a page/folder config object, a separator, or a dropdown menu.",
+      "oneOf": [
+        {
+          "type": "string",
+          "description": "A simple string title override for the page or folder."
+        },
+        {
+          "$ref": "#/$defs/ItemConfig"
+        },
+        {
+          "$ref": "#/$defs/LinkConfig"
+        },
+        {
+          "$ref": "#/$defs/SeparatorItem"
+        },
+        {
+          "$ref": "#/$defs/MenuConfig"
+        }
+      ]
+    },
+    "ItemConfig": {
+      "type": "object",
+      "description": "Configuration for a regular page or folder item in the sidebar.",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Display title for the page or folder. Overrides the file-name-derived title."
+        },
+        "type": {
+          "type": "string",
+          "enum": ["page", "doc"],
+          "description": "Declares the item type. 'page' places the item in the top navbar; 'doc' places it in the sidebar."
+        },
+        "display": {
+          "type": "string",
+          "enum": ["normal", "hidden", "children"],
+          "description": "Controls sidebar visibility. 'normal' shows the item, 'hidden' omits it entirely, 'children' hides the folder itself but shows its children."
+        },
+        "theme": {
+          "$ref": "#/$defs/PageTheme"
+        }
+      },
+      "additionalProperties": false
+    },
+    "LinkConfig": {
+      "type": "object",
+      "description": "An external or internal link item displayed in the sidebar or navbar.",
+      "required": ["href"],
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Display title for the link."
+        },
+        "href": {
+          "type": "string",
+          "description": "URL or path for the link. Can be an absolute URL or a relative path."
+        },
+        "type": {
+          "type": "string",
+          "enum": ["page", "doc"],
+          "description": "Declares the item type for placement purposes."
+        },
+        "display": {
+          "type": "string",
+          "enum": ["normal", "hidden"],
+          "description": "Controls sidebar visibility of the link."
+        }
+      },
+      "additionalProperties": false
+    },
+    "SeparatorItem": {
+      "type": "object",
+      "description": "A visual separator line rendered between items in the sidebar.",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "separator",
+          "description": "Marks this entry as a separator."
+        },
+        "title": {
+          "type": "string",
+          "description": "Optional label rendered alongside the separator line."
+        }
+      },
+      "additionalProperties": false
+    },
+    "MenuConfig": {
+      "type": "object",
+      "description": "A dropdown menu item in the sidebar or navbar containing multiple sub-links.",
+      "required": ["type", "items"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "menu",
+          "description": "Marks this entry as a dropdown menu."
+        },
+        "title": {
+          "type": "string",
+          "description": "Display title for the menu."
+        },
+        "display": {
+          "type": "string",
+          "enum": ["normal", "hidden"],
+          "description": "Controls sidebar visibility of the menu."
+        },
+        "items": {
+          "type": "object",
+          "description": "The menu items. Keys are item identifiers and values are menu item configurations.",
+          "additionalProperties": {
+            "$ref": "#/$defs/MenuItemEntry"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "MenuItemEntry": {
+      "description": "A single item within a menu dropdown. Can be a string title, a link with href, or a separator.",
+      "oneOf": [
+        {
+          "type": "string",
+          "description": "A simple string title for the menu item."
+        },
+        {
+          "type": "object",
+          "description": "A menu item with an optional title.",
+          "properties": {
+            "title": {
+              "type": "string",
+              "description": "Display title for the menu item."
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "description": "A menu item that is a link.",
+          "required": ["href"],
+          "properties": {
+            "title": {
+              "type": "string",
+              "description": "Display title for the link."
+            },
+            "href": {
+              "type": "string",
+              "description": "URL or path for the link."
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "$ref": "#/$defs/SeparatorItem"
+        }
+      ]
+    },
+    "PageTheme": {
+      "type": "object",
+      "description": "Per-page theme overrides that control which UI elements are rendered for a specific page or folder.",
+      "properties": {
+        "breadcrumb": {
+          "type": "boolean",
+          "description": "Show or hide breadcrumb navigation for this page.",
+          "default": true
+        },
+        "collapsed": {
+          "type": "boolean",
+          "description": "Whether this folder item is collapsed by default in the sidebar.",
+          "default": false
+        },
+        "copyPage": {
+          "type": "boolean",
+          "description": "Show or hide the copy page content button.",
+          "default": true
+        },
+        "footer": {
+          "type": "boolean",
+          "description": "Show or hide the footer on this page.",
+          "default": true
+        },
+        "layout": {
+          "type": "string",
+          "enum": ["default", "full"],
+          "description": "Layout style for this page. 'default' has a sidebar and TOC; 'full' uses the full width.",
+          "default": "default"
+        },
+        "navbar": {
+          "type": "boolean",
+          "description": "Show or hide the navigation bar on this page.",
+          "default": true
+        },
+        "pagination": {
+          "type": "boolean",
+          "description": "Show or hide next/previous page navigation controls.",
+          "default": true
+        },
+        "sidebar": {
+          "type": "boolean",
+          "description": "Show or hide the sidebar on this page.",
+          "default": true
+        },
+        "timestamp": {
+          "type": "boolean",
+          "description": "Show or hide the last-updated timestamp on this page.",
+          "default": true
+        },
+        "toc": {
+          "type": "boolean",
+          "description": "Show or hide the table of contents on this page.",
+          "default": true
+        },
+        "typesetting": {
+          "type": "string",
+          "enum": ["default", "article"],
+          "description": "Text typesetting style. 'default' is standard docs typography; 'article' uses larger body text suited for long-form prose.",
+          "default": "default"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

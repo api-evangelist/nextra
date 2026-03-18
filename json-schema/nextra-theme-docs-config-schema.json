@@ -1,0 +1,262 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nextra.site/schemas/nextra/nextra-theme-docs-config.json",
+  "title": "Nextra Docs Theme Layout Configuration",
+  "description": "Configuration props for the nextra-theme-docs Layout component. Passed as React props to the <Layout> component in the root layout.tsx of a Nextra docs site. Controls sidebar behavior, navigation bar, table of contents, dark mode, edit links, feedback, i18n language switching, theming, and footer.",
+  "type": "object",
+  "required": ["pageMap"],
+  "properties": {
+    "pageMap": {
+      "type": "array",
+      "description": "Page map list. The result of the getPageMap(route = '/') call from the nextra/page-map module. Required by the Layout component to build the sidebar and navigation.",
+      "items": {
+        "description": "A PageMapItem representing a file, folder, or meta entry in the Nextra page tree."
+      }
+    },
+    "banner": {
+      "description": "Rendered Banner component. Displayed at the top of every page. E.g. <Banner {...bannerProps} />."
+    },
+    "children": {
+      "description": "Page content rendered inside the layout. Passed automatically by Next.js."
+    },
+    "copyPageButton": {
+      "type": "boolean",
+      "description": "Hide or show the copy page content button that copies the entire page markdown content to the clipboard.",
+      "default": true
+    },
+    "darkMode": {
+      "type": "boolean",
+      "description": "Show or hide the dark mode select button in the navbar.",
+      "default": true
+    },
+    "docsRepositoryBase": {
+      "type": "string",
+      "pattern": "^https://",
+      "description": "Base URL of the documentation repository on GitHub. Used to generate the edit this page and feedback links.",
+      "default": "https://github.com/shuding/nextra"
+    },
+    "editLink": {
+      "description": "Content of the edit link shown at the bottom of each page. Defaults to the string 'Edit this page'.",
+      "default": "Edit this page"
+    },
+    "feedback": {
+      "$ref": "#/$defs/FeedbackConfig"
+    },
+    "footer": {
+      "description": "Rendered Footer component. E.g. <Footer {...footerProps} />."
+    },
+    "i18n": {
+      "type": "array",
+      "description": "Options to configure the language dropdown for internationalized docs sites.",
+      "items": {
+        "$ref": "#/$defs/I18nLocaleEntry"
+      },
+      "default": []
+    },
+    "lastUpdated": {
+      "description": "Component to render the last updated timestamp. Must be a <LastUpdated /> component from nextra-theme-docs.",
+      "default": "<LastUpdated />"
+    },
+    "navbar": {
+      "description": "Rendered Navbar component. E.g. <Navbar {...navbarProps} />."
+    },
+    "navigation": {
+      "description": "Enable or disable previous/next page navigation links at the bottom of the page.",
+      "oneOf": [
+        {
+          "type": "boolean",
+          "description": "Pass true to enable both prev and next links, false to disable both."
+        },
+        {
+          "type": "object",
+          "description": "Fine-grained control over prev and next navigation links.",
+          "required": ["next", "prev"],
+          "properties": {
+            "next": {
+              "type": "boolean",
+              "description": "Show or hide the next page navigation link."
+            },
+            "prev": {
+              "type": "boolean",
+              "description": "Show or hide the previous page navigation link."
+            }
+          },
+          "additionalProperties": false
+        }
+      ],
+      "default": true
+    },
+    "nextThemes": {
+      "$ref": "#/$defs/NextThemesConfig"
+    },
+    "search": {
+      "description": "Rendered Search component. E.g. <Search {...searchProps} />. Defaults to the built-in Pagefind-powered search.",
+      "default": "<Search />"
+    },
+    "sidebar": {
+      "$ref": "#/$defs/SidebarConfig"
+    },
+    "themeSwitch": {
+      "$ref": "#/$defs/ThemeSwitchConfig"
+    },
+    "toc": {
+      "$ref": "#/$defs/TocConfig"
+    }
+  },
+  "$defs": {
+    "FeedbackConfig": {
+      "type": "object",
+      "description": "Configuration for the feedback link shown at the bottom of documentation pages.",
+      "properties": {
+        "content": {
+          "description": "Content of the feedback link rendered to the user.",
+          "default": "Question? Give us feedback"
+        },
+        "labels": {
+          "type": "string",
+          "description": "Comma-separated GitHub issue labels applied when a new feedback issue is created.",
+          "default": "feedback"
+        },
+        "link": {
+          "type": "string",
+          "format": "uri",
+          "description": "Custom URL for the feedback link. Defaults to the GitHub issue creation form for the docs repository with the page title prefilled."
+        }
+      },
+      "additionalProperties": false
+    },
+    "I18nLocaleEntry": {
+      "type": "object",
+      "description": "A single locale entry for the i18n language dropdown.",
+      "required": ["locale", "name"],
+      "properties": {
+        "locale": {
+          "type": "string",
+          "description": "The locale code as defined in the i18n.locales field in next.config. E.g. 'en', 'zh-CN'."
+        },
+        "name": {
+          "type": "string",
+          "description": "Human-readable locale name displayed in the dropdown. E.g. 'English', '中文'."
+        }
+      },
+      "additionalProperties": false
+    },
+    "NextThemesConfig": {
+      "type": "object",
+      "description": "Configuration passed to the next-themes ThemeProvider. Controls how the theme class is applied and default theme behavior.",
+      "properties": {
+        "attribute": {
+          "description": "HTML attribute to apply the theme to. Can be 'class' or a data-* attribute, or an array of attributes.",
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^(class|data-.+)$",
+              "description": "Single attribute: 'class' or a data-* attribute."
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^(class|data-.+)$"
+              },
+              "description": "Array of attributes."
+            }
+          ],
+          "default": "class"
+        },
+        "defaultTheme": {
+          "type": "string",
+          "description": "Default theme name on first load.",
+          "default": "system"
+        },
+        "disableTransitionOnChange": {
+          "type": "boolean",
+          "description": "Disable CSS transitions when switching themes to prevent a flash of unstyled content.",
+          "default": true
+        },
+        "forcedTheme": {
+          "type": "string",
+          "description": "Force a specific theme for all pages, overriding user preference."
+        },
+        "storageKey": {
+          "type": "string",
+          "description": "Key used to persist the selected theme in localStorage.",
+          "default": "theme"
+        }
+      },
+      "additionalProperties": false
+    },
+    "SidebarConfig": {
+      "type": "object",
+      "description": "Configuration for the sidebar navigation panel.",
+      "properties": {
+        "autoCollapse": {
+          "type": "boolean",
+          "description": "If true, automatically collapse inactive folders above the defaultMenuCollapseLevel."
+        },
+        "defaultMenuCollapseLevel": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Folder nesting level at which the sidebar menu is collapsed by default.",
+          "default": 2
+        },
+        "defaultOpen": {
+          "type": "boolean",
+          "description": "Show or hide the sidebar by default on page load.",
+          "default": true
+        },
+        "toggleButton": {
+          "type": "boolean",
+          "description": "Show or hide the sidebar toggle button.",
+          "default": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ThemeSwitchConfig": {
+      "type": "object",
+      "description": "Translation strings for the theme switch dropdown options.",
+      "properties": {
+        "dark": {
+          "type": "string",
+          "description": "Label for the dark mode option.",
+          "default": "Dark"
+        },
+        "light": {
+          "type": "string",
+          "description": "Label for the light mode option.",
+          "default": "Light"
+        },
+        "system": {
+          "type": "string",
+          "description": "Label for the system/auto theme option.",
+          "default": "System"
+        }
+      },
+      "additionalProperties": false
+    },
+    "TocConfig": {
+      "type": "object",
+      "description": "Configuration for the table of contents sidebar panel.",
+      "properties": {
+        "backToTop": {
+          "description": "Text or element for the back-to-top button at the bottom of the TOC.",
+          "default": "Scroll to top"
+        },
+        "extraContent": {
+          "description": "Extra content rendered below the TOC entries."
+        },
+        "float": {
+          "type": "boolean",
+          "description": "Float the TOC panel next to the main content.",
+          "default": true
+        },
+        "title": {
+          "description": "Title rendered above the TOC entries.",
+          "default": "On This Page"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

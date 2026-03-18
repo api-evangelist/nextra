@@ -1,0 +1,188 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "nextra": "https://nextra.site/vocab/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "doap": "http://usefulinc.com/ns/doap#",
+
+    "NextraConfig": {
+      "@id": "nextra:NextraConfig",
+      "@context": {
+        "defaultShowCopyCode": {
+          "@id": "nextra:defaultShowCopyCode",
+          "@type": "xsd:boolean"
+        },
+        "staticImage": {
+          "@id": "nextra:staticImage",
+          "@type": "xsd:boolean"
+        },
+        "readingTime": {
+          "@id": "nextra:readingTime",
+          "@type": "xsd:boolean"
+        },
+        "codeHighlight": {
+          "@id": "nextra:codeHighlight",
+          "@type": "xsd:boolean"
+        },
+        "contentDirBasePath": {
+          "@id": "nextra:contentDirBasePath",
+          "@type": "xsd:string"
+        },
+        "latex": "nextra:latex",
+        "search": "nextra:search",
+        "mdxOptions": "nextra:mdxOptions"
+      }
+    },
+
+    "PageMapItem": {
+      "@id": "nextra:PageMapItem",
+      "@context": {
+        "name": "schema:name",
+        "route": {
+          "@id": "nextra:route",
+          "@type": "xsd:string"
+        },
+        "children": {
+          "@id": "nextra:children",
+          "@container": "@set"
+        },
+        "frontMatter": "nextra:frontMatter"
+      }
+    },
+
+    "MdxFile": {
+      "@id": "nextra:MdxFile",
+      "@context": {
+        "name": "schema:name",
+        "route": {
+          "@id": "nextra:route",
+          "@type": "xsd:string"
+        },
+        "frontMatter": "nextra:frontMatter"
+      }
+    },
+
+    "Folder": {
+      "@id": "nextra:Folder",
+      "@context": {
+        "name": "schema:name",
+        "route": {
+          "@id": "nextra:route",
+          "@type": "xsd:string"
+        },
+        "children": {
+          "@id": "nextra:children",
+          "@container": "@set"
+        }
+      }
+    },
+
+    "MetaJsonFile": {
+      "@id": "nextra:MetaJsonFile",
+      "@context": {
+        "data": "nextra:metaData"
+      }
+    },
+
+    "FrontMatter": {
+      "@id": "nextra:FrontMatter",
+      "@context": {
+        "title": "dcterms:title",
+        "description": "dcterms:description",
+        "date": {
+          "@id": "dcterms:date",
+          "@type": "xsd:date"
+        },
+        "tag": "schema:keywords",
+        "readingTime": "nextra:readingTime"
+      }
+    },
+
+    "Heading": {
+      "@id": "nextra:Heading",
+      "@context": {
+        "depth": {
+          "@id": "nextra:depth",
+          "@type": "xsd:integer"
+        },
+        "value": "schema:name",
+        "id": {
+          "@id": "schema:identifier",
+          "@type": "xsd:string"
+        }
+      }
+    },
+
+    "ReadingTime": {
+      "@id": "nextra:ReadingTime",
+      "@context": {
+        "text": "schema:description",
+        "minutes": {
+          "@id": "nextra:minutes",
+          "@type": "xsd:decimal"
+        },
+        "time": {
+          "@id": "nextra:time",
+          "@type": "xsd:integer"
+        },
+        "words": {
+          "@id": "nextra:words",
+          "@type": "xsd:integer"
+        }
+      }
+    },
+
+    "DocsThemeConfig": {
+      "@id": "nextra:DocsThemeConfig",
+      "@context": {
+        "docsRepositoryBase": {
+          "@id": "nextra:docsRepositoryBase",
+          "@type": "@id"
+        },
+        "darkMode": {
+          "@id": "nextra:darkMode",
+          "@type": "xsd:boolean"
+        },
+        "copyPageButton": {
+          "@id": "nextra:copyPageButton",
+          "@type": "xsd:boolean"
+        },
+        "navigation": "nextra:navigation",
+        "sidebar": "nextra:sidebar",
+        "toc": "nextra:toc",
+        "feedback": "nextra:feedback",
+        "i18n": {
+          "@id": "nextra:i18n",
+          "@container": "@set"
+        }
+      }
+    },
+
+    "SoftwarePackage": {
+      "@id": "schema:SoftwareApplication",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "version": "schema:version",
+        "license": {
+          "@id": "schema:license",
+          "@type": "@id"
+        },
+        "url": {
+          "@id": "schema:url",
+          "@type": "@id"
+        },
+        "repository": {
+          "@id": "doap:repository",
+          "@type": "@id"
+        },
+        "keywords": {
+          "@id": "schema:keywords",
+          "@container": "@set"
+        }
+      }
+    }
+  }
+}
