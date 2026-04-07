@@ -11,10 +11,10 @@ type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - Documentation
-  - Static Site Generator
-  - Next.js
   - MDX
+  - Next.js
   - Open Source
+  - Static Site Generator
 url: >-
   https://raw.githubusercontent.com/api-evangelist/nextra/refs/heads/main/apis.yml
 created: '2026-03-18'
@@ -25,9 +25,9 @@ apis:
     name: Nextra
     tags:
       - Documentation
-      - Static Site Generator
-      - Next.js
       - MDX
+      - Next.js
+      - Static Site Generator
     humanURL: https://nextra.site
     description: >-
       Nextra is the core Next.js plugin and library that provides MDX compilation,
@@ -48,8 +48,8 @@ apis:
     name: Nextra Docs Theme
     tags:
       - Documentation
-      - Theme
       - React
+      - Theme
     humanURL: https://nextra.site/docs/docs-theme
     description: >-
       The Nextra Docs Theme (`nextra-theme-docs`) is a full-featured documentation
@@ -68,10 +68,10 @@ apis:
   - aid: nextra:nextra-theme-blog
     name: Nextra Blog Theme
     tags:
-      - Documentation
       - Blog
-      - Theme
+      - Documentation
       - React
+      - Theme
     humanURL: https://nextra.site/docs/blog-theme
     description: >-
       The Nextra Blog Theme (`nextra-theme-blog`) provides a minimal, clean
@@ -82,8 +82,7 @@ apis:
     properties:
       - url: https://nextra.site/docs/blog-theme
         type: Documentation
-      - url: 
-          https://github.com/shuding/nextra/tree/main/packages/nextra-theme-blog
+      - url: https://github.com/shuding/nextra/tree/main/packages/nextra-theme-blog
         type: GitHub
 common:
   - type: Website
