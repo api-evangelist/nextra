@@ -93,7 +93,7 @@ common:
     url: https://nextra.site/docs/guide
   - type: GitHub
     url: https://github.com/shuding/nextra
-  - type: Changelog
+  - type: ChangeLog
     url: https://github.com/shuding/nextra/releases
   - type: License
     url: https://github.com/shuding/nextra/blob/main/LICENSE
@@ -103,7 +103,7 @@ common:
     url: json-schema/nextra-theme-docs-config-schema.json
   - type: JSONSchema
     url: json-schema/nextra-meta-schema.json
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/nextra-context.jsonld
 maintainers:
   - FN: Kin Lane
