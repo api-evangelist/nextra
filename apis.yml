@@ -85,6 +85,8 @@ apis:
       - url: https://github.com/shuding/nextra/tree/main/packages/nextra-theme-blog
         type: GitHub
 common:
+  - type: DomainSecurity
+    url: security/nextra-domain-security.yml
   - type: Website
     url: https://nextra.site
   - type: Documentation
