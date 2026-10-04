@@ -9,15 +9,20 @@ description: >-
   navigation.
 type: Index
 deliveryModel:
-  model: unknown
-  open_source: false
+  model: self-hosted
+  license: MIT
+  license_evidence:
+    repo: shuding/nextra
+    spdx: MIT
+    stars: 13926
+  open_source: true
   commercial: false
   callable_host: false
-  label: Delivery model not determined — needs a product licence on record
-  confidence: low
+  label: Self-hosted open source · you run it yourself
+  confidence: medium
   source:
-  - none
-  generated: '2026-08-28'
+  - repository-license
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: freemium
@@ -36,7 +41,7 @@ tags:
   - Documentation
   - MDX
   - Next.js
-  - Open-Source
+  - Open Source
   - Static Site Generator
 tags_raw:
   - Documentation
@@ -44,6 +49,7 @@ tags_raw:
   - Next.js
   - Open Source
   - Static Site Generator
+  - Open-Source
 url: >-
   https://raw.githubusercontent.com/api-evangelist/nextra/refs/heads/main/apis.yml
 created: '2026-03-18'
