@@ -53,7 +53,7 @@ tags_raw:
 url: >-
   https://raw.githubusercontent.com/api-evangelist/nextra/refs/heads/main/apis.yml
 created: '2026-03-18'
-modified: '2026-04-28'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
   - aid: nextra:nextra
@@ -120,6 +120,8 @@ apis:
       - url: https://github.com/shuding/nextra/tree/main/packages/nextra-theme-blog
         type: GitHub
 common:
+  - url: https://nextra.site/blog
+    type: Blog
   - type: DomainSecurity
     url: security/nextra-domain-security.yml
   - type: Website
