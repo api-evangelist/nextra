@@ -120,6 +120,12 @@ apis:
       - url: https://github.com/shuding/nextra/tree/main/packages/nextra-theme-blog
         type: GitHub
 common:
+  - type: Plans
+    url: plans/nextra-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/nextra-rate-limits.yml
+  - type: FinOps
+    url: finops/nextra-finops.yml
   - url: https://nextra.site/blog
     type: Blog
   - type: DomainSecurity
