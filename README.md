@@ -64,36 +64,127 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Nextra is an open-source, Next.js-based documentation framework for building fast, modern, and beautifully styled documentation sites. It extends Next.js with MDX support, file-system routing, built-in full-text search powered by Pagefind, syntax highlighting via Rehype Pretty Code, LaTeX rendering (KaTeX or MathJax), static image optimization, internationalization support, and two production-ready themes: a full-featured docs theme and a minimal blog theme.
+Nextra is an open-source, Next.js-based documentation framework for building fast, modern, and beautifully styled documentation sites. It extends Next.js with MDX support, file-system routing, built-in search powered by Pagefind, syntax highlighting via Rehype Pretty Code, LaTeX rendering, static image optimization, i18n support, and a full-featured docs theme with sidebar, navbar, TOC, dark mode, and breadcrumb navigation.
 
-- **Website:** https://nextra.site
-- **GitHub:** https://github.com/shuding/nextra
-- **Documentation:** https://nextra.site/docs
+**Areas:** Documentation · MDX · Next.js · Open Source · Static Site Generator
 
-## Overview
+## Nextra on APIs.io
 
-Nextra is a JavaScript/TypeScript library consumed as an npm package. It is not a hosted service — there are no REST API endpoints, no webhooks, and no streaming event systems. Its programmable surface consists of:
+Everything profiled for Nextra is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/nextra/](https://apis.io/providers/nextra/)** — or go straight to one of the APIs or properties below.
 
-1. **Next.js Plugin Configuration** — the `nextra()` plugin in `next.config.ts` accepts a `NextraConfig` object controlling MDX compilation, search, syntax highlighting, LaTeX, image optimization, and i18n behavior.
-2. **File Convention APIs** — `_meta.js` files control sidebar ordering, titles, separators, dropdown menus, and per-page theme overrides.
-3. **Server Utilities** — `getPageMap()`, `compileMdx()`, `fetchFilePathsFromGitHub()`, and related exports from the `nextra` package.
-4. **Client Components and Hooks** — exported from `nextra/components` and `nextra-theme-docs`, including `useThemeConfig()` and `useConfig()`.
+### APIs (3)
 
-## Artifacts
+- [Nextra](https://apis.io/apis/nextra/nextra/) — Nextra is the core Next.js plugin and library that provides MDX compilation, file-system page mapping, static image handling, search indexing, syntax…
+- [Nextra Docs Theme](https://apis.io/apis/nextra/nextra-theme-docs/) — The Nextra Docs Theme (`nextra-theme-docs`) is a full-featured documentation theme built on top of the Nextra core. It provides a configurable sidebar with…
+- [Nextra Blog Theme](https://apis.io/apis/nextra/nextra-theme-blog/) — The Nextra Blog Theme (`nextra-theme-blog`) provides a minimal, clean blog layout built on Nextra. It supports post listings with tags and dates, RSS feed…
 
-| File | Type | Description |
-|---|---|---|
-| `json-schema/nextra-config-schema.json` | JSON Schema | Schema for the `NextraConfig` object passed to the `nextra()` Next.js plugin |
-| `json-schema/nextra-theme-docs-config-schema.json` | JSON Schema | Schema for the `<Layout>` component props in `nextra-theme-docs` |
-| `json-schema/nextra-meta-schema.json` | JSON Schema | Schema for `_meta.js` / `_meta.global.js` sidebar configuration files |
-| `json-ld/nextra-context.jsonld` | JSON-LD Context | Linked data context mapping Nextra entities to schema.org and standard vocabularies |
+### Published properties
 
-## Packages
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-- **`nextra`** — Core plugin providing MDX compilation, page mapping, search, and utilities
-- **`nextra-theme-docs`** — Full-featured documentation theme with sidebar, navbar, TOC, dark mode, and i18n
-- **`nextra-theme-blog`** — Minimal blog theme with post listing, tags, dates, and RSS feed
+#### JSON Schema (3)
 
-## License
+The data models the API reads and writes.
 
-MIT — https://github.com/shuding/nextra/blob/main/LICENSE
+- [Nextra Configuration](https://apis.io/schemas/nextra/nextra-config/)
+- [Nextra Meta File](https://apis.io/schemas/nextra/nextra-meta/)
+- [Nextra Docs Theme Layout Configuration](https://apis.io/schemas/nextra/nextra-theme-docs-config/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Nextra Context](https://apis.io/jsonld/nextra/nextra-context/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Nextra — jsonschema rules](https://apis.io/rules/nextra/nextra-jsonschema-spectral-rules/)
+
+#### Security (1)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Nextra Domain Security](https://apis.io/security/nextra/nextra-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Nextra Plans Pricing](https://apis.io/plans/nextra/nextra-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Nextra Rate Limits](https://apis.io/rate-limits/nextra/nextra-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Nextra Finops](https://apis.io/finops/nextra/nextra-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://nextra.site)
+- [Documentation](https://nextra.site/docs)
+- [Getting started](https://nextra.site/docs/guide)
+- [Changelog](https://github.com/shuding/nextra/releases)
+- [Blog](https://nextra.site/blog)
+
+## API Evangelist rating
+
+**Kin Score 21.4** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 62.5 |
+| Contract quality | 17.9 |
+| Contract governance | 9.8 |
+| Operational transparency | 28.9 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 7.9 |
+
+**Agent readiness 0.6** — human-only
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 10.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/nextra/](https://apis.io/providers/nextra/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Nextra: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/nextra/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
